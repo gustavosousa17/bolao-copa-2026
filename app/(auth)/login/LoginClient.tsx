@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { signInWithEmail, signUpWithEmail } from "./actions";
-import { createClient } from "@/lib/supabase/client";
+import { signInWithEmail, signUpWithEmail, signInWithGoogle } from "./actions";
 import { Trophy, Mail, Lock, User, Eye, EyeOff, Loader2 } from "lucide-react";
 
 type Tab = "login" | "signup";
@@ -33,19 +32,7 @@ export default function LoginClient() {
 
   async function handleGoogle() {
     setGoogleLoading(true);
-    const supabase = createClient();
-    const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: `${window.location.origin}/auth/callback`,
-        skipBrowserRedirect: true,
-      },
-    });
-    if (error || !data.url) {
-      setGoogleLoading(false);
-      return;
-    }
-    window.location.href = data.url;
+    await signInWithGoogle();
   }
 
   return (

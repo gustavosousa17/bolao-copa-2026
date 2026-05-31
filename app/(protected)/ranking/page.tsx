@@ -125,9 +125,9 @@ export default async function RankingPage() {
         )}
       </div>
 
-      {/* Legenda de pontuação */}
-      <div className="p-4 bg-slate-800/30 border border-slate-700/30 rounded-xl">
-        <p className="text-xs font-semibold text-slate-400 mb-3 uppercase tracking-wider">
+      {/* Sistema de pontuação */}
+      <div className="p-4 bg-slate-800/30 border border-slate-700/30 rounded-xl space-y-4">
+        <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
           Sistema de Pontuação
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -140,6 +140,24 @@ export default async function RankingPage() {
             <div key={item.pts} className="text-center">
               <span className={`text-lg font-bold ${item.color}`}>{item.pts}pts</span>
               <p className="text-xs text-slate-500 mt-0.5">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Regras */}
+        <div className="border-t border-slate-700/40 pt-4 space-y-2">
+          <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Regras</p>
+          {[
+            { icon: "🥇", text: "25 pts — Placar exato: você acertou o placar completo (ex: palpitou 2×1 e foi 2×1)" },
+            { icon: "🥈", text: "18 pts — Vencedor + saldo: acertou quem ganhou e a diferença de gols (ex: palpitou 3×1 e foi 2×0 — ambos vitória por 2)" },
+            { icon: "🥉", text: "10 pts — Apenas vencedor: acertou quem ganhou ou que seria empate, mas errou o placar" },
+            { icon: "❌", text: "0 pts — Errou tudo: não acertou nem o resultado" },
+            { icon: "🔒", text: "Palpites ficam travados 1 hora antes do jogo começar — sem alterações após esse prazo" },
+            { icon: "🏆", text: "Desempate no ranking: quem tiver mais placares exatos (25 pts) fica à frente" },
+          ].map((rule, i) => (
+            <div key={i} className="flex items-start gap-2 text-xs text-slate-400">
+              <span className="text-sm flex-shrink-0">{rule.icon}</span>
+              <span>{rule.text}</span>
             </div>
           ))}
         </div>

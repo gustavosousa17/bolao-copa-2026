@@ -51,7 +51,7 @@ export async function GET(request: NextRequest) {
         const fixtureTime = new Date(fixture.fixture.date).getTime();
         const idx = unassigned.findIndex((m) => {
           const dbTime = new Date(m.data_hora).getTime();
-          return Math.abs(dbTime - fixtureTime) < 60 * 60 * 1000;
+          return Math.abs(dbTime - fixtureTime) < 2 * 60 * 60 * 1000;
         });
 
         if (idx !== -1) {

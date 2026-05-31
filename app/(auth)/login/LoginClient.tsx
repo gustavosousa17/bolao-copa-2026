@@ -34,12 +34,18 @@ export default function LoginClient() {
   async function handleGoogle() {
     setGoogleLoading(true);
     const supabase = createClient();
-    await supabase.auth.signInWithOAuth({
+    const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
         redirectTo: `${window.location.origin}/auth/callback`,
+        skipBrowserRedirect: true,
       },
     });
+    if (error || !data.url) {
+      setGoogleLoading(false);
+      return;
+    }
+    window.location.href = data.url;
   }
 
   return (

@@ -32,7 +32,7 @@ export async function middleware(request: NextRequest) {
   const pathname = url.pathname;
 
   // Rotas públicas (não precisam de autenticação)
-  const publicRoutes = ["/login", "/auth/callback", "/ranking"];
+  const publicRoutes = ["/login", "/auth/callback", "/ranking", "/api/cron"];
   const isPublicRoute = publicRoutes.some((route) =>
     pathname.startsWith(route)
   );

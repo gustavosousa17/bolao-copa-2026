@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { createServerClient } from "@/lib/supabase/server";
 import { signOut } from "@/app/(auth)/login/actions";
-import { Trophy, BarChart3, LogOut, User } from "lucide-react";
+import { Trophy, BarChart3, LogOut, User, LayoutGrid } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -48,6 +48,13 @@ export default async function ProtectedLayout({
             >
               <Trophy className="w-4 h-4" />
               <span className="hidden sm:inline">Palpites</span>
+            </Link>
+            <Link
+              href="/classificacao"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-slate-400 hover:text-white hover:bg-slate-800 transition-all"
+            >
+              <LayoutGrid className="w-4 h-4" />
+              <span className="hidden sm:inline">Grupos</span>
             </Link>
             <Link
               href="/ranking"
